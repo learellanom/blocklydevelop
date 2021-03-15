@@ -1,0 +1,102 @@
+html 
+{
+	font-family: arial;
+	padding:     20px 20px 20px 20px;
+}
+
+.myoption select{
+	box-shadow    : 0 1px 0 1px rgba(0,0,0,.04);
+	background    : transparent;
+	font-size     : 14px;
+	
+
+	width         : 130px; 
+	float		  : right;	
+}
+
+.myoption select  option{
+	text-decoration : underline;
+}
+
+.menu{
+	list-style-type : none;
+	font-size       : 14px;
+}
+.menu li{
+	float           : right; 
+	padding         : 0px 10px 0px 10px;
+}
+
+@media only screen and (min-width: 1px) and (max-width: 735px){
+	.menu{
+		list-style-type : none;
+		font-size       : 9px;
+		display         : none;
+	}
+
+	.myoption select{
+		display : block;
+	}	
+}
+
+@media only screen and (min-width: 736px){
+	.menu{
+		list-style-type : none;
+		font-size       : 14px;
+	}
+
+	.myoption select{
+		display : none;
+	}
+
+}
+
+.customIcon_cat_ivr {
+	content : url(../images/cat_ivr.png);
+	height  : 20px;
+	width   : 20px;
+	padding : 0px 0px 0px 10px;	
+}
+
+.customIcon_cat_flow {
+	content : url(../images/cat_flow.png);
+	height  : 20px;
+	width   : 20px;
+padding : 0px 0px 0px 10px;	
+}
+
+.customIcon_cat_math {
+	content : url(../images/cat_math.png);
+	height  : 20px;
+	width   : 20px;
+padding : 0px 0px 0px 10px;	
+}
+
+.customIcon_cat_queue {
+	content : url(../images/cat_queue.png);
+	height  : 20px;
+	width   : 20px;
+padding : 0px 0px 0px 10px;	
+}
+
+.customIcon_cat_conference {
+	content : url(../images/cat_conference.png);
+	height  : 20px;
+	width   : 20px;
+padding : 0px 0px 0px 10px;	
+}
+
+.customIcon_cat_function {
+	content : url(../images/cat_function.png);
+	height  : 20px;
+	width   : 20px;
+padding : 0px 0px 0px 10px;	
+}
+
+.cat_row{
+	height  : 30px;
+}
+
+.cat_label{
+	padding : 0px 0px 0px 10px;
+}
