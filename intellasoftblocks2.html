@@ -1,0 +1,1050 @@
+<html>
+
+<head>
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Last-Modified" content="0">
+  <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+</head>
+
+<style>
+
+html 
+{
+	font-family: arial;
+	padding:     20px 20px 20px 20px;
+}
+
+#menu ul {
+	list-style : none;
+	margin     : 0;
+	padding    : 0;
+}
+
+#menu ul a {
+	display         : block;
+	color           : black;
+	text-decoration : none;
+	font-weight     : 400;
+	font-size       : 15px;
+	padding         : 10px;
+	font-family     : "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	letter-spacing  : 1px;
+}
+
+#menu ul li {
+ position:relative;
+ float:left;
+ margin:0;
+ padding:0;
+}
+
+#menu ul li:hover {
+
+}
+
+#menu ul ul {
+ display:none;
+ position:absolute;
+ top:100%;
+ left:0;
+ background:#eee;
+ padding:0;
+}
+
+#menu ul ul li {
+	float			:none;
+	width			:150px
+}
+
+#menu ul ul a {
+	line-height     : 120%;
+	padding         : 10px 15px;
+	text-decoration : underline; 
+}
+
+#menu ul li:hover > ul {
+	display			: block;
+
+}
+#menu ul ul li:hover{
+ background:#5b78a7;	
+}
+
+</style>
+
+
+<body>
+
+<!--
+<img src="./images/logo.gif">
+
+<br> 
+<br> 
+<B>Intella Blocks</b>
+<br> 
+<br> 
+<i>Main Menu - Intella Blocks</i>
+
+-->
+
+<div>
+
+<label style="float: left;">Flow   : </label>
+<input list="browsers" name="browser" id="browserin" style="float: left; width: 250px;">
+<datalist id="browsers">
+</datalist>
+
+
+<nav id="menu">
+	<ul style="list-style-type: none;">
+		<li><a href="#"><img src="./images/menu.png" height="55px" width="140px"></a>
+			<ul>
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="read_flow();"        >Read<a></li>
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="save_flow();"        >Save<a></li>
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="reload();"           >Clear<a></li>
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="download_local();"   >Download<a></li>  
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="import_flow();"      >Import</a></li>       
+				<li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="validate_flow();"    >Validate</a></li>    
+			</ul> 
+		</li>	
+	</ul>
+<nav>
+
+
+
+<ul style="list-style-type: none;">
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="read_flow();"        >Read<a></li>
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="save_flow();"        >Save<a></li>
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="reload();"           >Clear<a></li>
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href=#      onclick="download_local();"   >Download<a></li>  
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="import_flow();"      >Import</a></li>       
+  <li style="float: right; padding: 0px 10px 0px 10px;"><a href="#"    onclick="validate_flow();"    >Validate</a></li>         
+</ul>
+
+
+</div>
+
+<br>
+<br>
+	<!-- <div id="blocklyArea" style="height: 75%; width: 100%;"> -->
+	<div id="blocklyArea" style="height: 95%; width: 100%;">
+		<div id="blocklyDiv" style="position: absolute">
+		</div>
+		
+	</div>
+		<!-- <div id="blocklyDiv" style="height: 100%; width: 100%;"></div> -->
+  
+	<xml id="toolbox" style="display: none">
+		  
+	   <block type="loop_statement"></block>  
+	   
+	   <block type="start_flow"></block>  		   
+
+	   <block type="stop_flow"></block>  
+	   
+	   <block type="callback_dialer"></block>  
+	   
+	   <block type="say_number"></block>  	   
+
+	   <block type="musiconhold"></block>  		   
+
+	   <block type="sayqueueposition_flow"></block>  	
+
+	   <block type="say_hold_time_flow"></block>  	
+
+	   <block type="say_track_flow"></block>  	   
+	   
+
+	</xml>
+  
+	  
+</body>
+
+<br>
+<br>
+
+<script src="./lib/blockly.min.js"></script>
+
+<script>
+
+ 
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "loop_statement",
+  "message0": "Loop %1 %2 %3 %4",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/loop514x514.png",
+      "width": 35,
+      "height": 35,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_statement",
+      "name": "NAME"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 210,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+  Blockly.JavaScript['loop_statement'] = function(block) {
+  var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "start_flow",
+  "message0": "Start %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/Start227x227.png",
+      "width": 35,
+      "height": 35,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "nextStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+  Blockly.JavaScript['start_flow'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+
+
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "stop_flow",
+  "message0": "Stop %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/Stop330x330.png",
+      "width": 35,
+      "height": 35,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "colour": 230,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+Blockly.JavaScript['stop_flow'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "callback_dialer",
+  "message0": "Call Back %1 %2 %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/Callback200x200.png",
+      "width": 35,
+      "height": 35,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "input_dummy"
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 20,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+Blockly.JavaScript['callback_dialer'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+
+
+
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "say_number",
+  "message0": "Say Number %1 %2 Number %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/saynumber200x151.png",
+      "width": 55,
+      "height": 55,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_number",
+      "name": "number",
+      "value": 0,
+      "min": 0,
+      "max": 99999
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 120,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+  
+Blockly.JavaScript['say_number'] = function(block) {
+  var variable_name = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('NAME'), Blockly.Variables.NAME_TYPE);
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+ 
+
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "musiconhold",
+  "message0": "Music On Hold %1 %2 Duration %3 %4 MusicClass %5",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/musiconhold202x202.png",
+      "width": 35,
+      "height": 35,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_number",
+      "name": "duration",
+      "value": 0
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "option_moh",
+      "options": [
+        [
+          "         ",
+          "OPTIONNAME"
+        ]		
+      ]
+    }
+  ],
+  "extensions": ["dynamic_menu"],    
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 260,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+  
+  
+Blockly.JavaScript['musiconhold'] = function(block) {
+	var number_duration = block.getFieldValue('duration');
+	var text_musicclass = block.getFieldValue('option_moh');
+	// TODO: Assemble JavaScript into code variable.
+	var code = '...;\n';
+	return code;
+};
+
+Blockly.Extensions.register('dynamic_menu',
+  function() {
+  
+	var mymoh = load_list_moh();
+	var mio  = this;
+    var mio2 = mio.inputList[2].fieldRow[1].menuGenerator_;
+
+	var i = 0;	
+	for (myvalue of mymoh){
+		mytemp = [ myvalue , "OPTIONAME" + i];
+		mio2[i] = mytemp; 
+		i++;
+	 }
+  });
+  
+  
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "sayqueueposition_flow",
+  "message0": "Say Queue Position %1 %2 Only is Less than %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/sayqueueposition.png",
+      "width": 55,
+      "height": 55,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_number",
+      "name": "queueposition",
+      "value": 0,
+      "min": 0,
+      "max": 999
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 290,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+  
+Blockly.JavaScript['sayqueueposition_flow'] = function(block) {
+  var number_queueposition = block.getFieldValue('queueposition');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+}; 
+ 
+
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "say_hold_time_flow",
+  "message0": "Say Hold Time %1 %2 Only If lLess Than %3",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/sayholdtime.png",
+      "width": 55,
+      "height": 55,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_number",
+      "name": "holdtime",
+      "value": 0,
+      "min": 0,
+      "max": 999
+    }
+  ],
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 330,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+
+Blockly.JavaScript['say_hold_time_flow'] = function(block) {
+  var number_holdtime = block.getFieldValue('holdtime');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+ 
+Blockly.defineBlocksWithJsonArray([
+{
+  "type": "say_track_flow",
+  "message0": "Say Track %1 %2 Track Name %3 %4 Wait time %5 %6 Play Once %7 %8 Play Once Token %9",
+  "args0": [
+    {
+      "type": "field_image",
+      "src": "./images/saytrack.png",
+      "width": 55,
+      "height": 55,
+      "alt": "*",
+      "flipRtl": false
+    },
+    {
+      "type": "input_dummy"
+    },
+    {
+      "type": "field_dropdown",
+      "name": "dropdown_track",
+      "options": [
+        [
+          "             ",
+          "track"
+        ]
+      ]
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
+    },
+    {
+      "type": "field_number",
+      "name": "WaitTime",
+      "value": 0
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
+    },
+    {
+      "type": "field_checkbox",
+      "name": "PlayOnce",
+      "checked": false
+    },
+    {
+      "type": "input_dummy",
+      "align": "RIGHT"
+    },
+    {
+      "type": "field_input",
+      "name": "PlaceOnceToken",  
+      "text": "           "
+    }
+  ],
+  "extensions": ["dynamic_menu_track"],     
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 105,
+  "tooltip": "",
+  "helpUrl": ""
+}
+  ]);
+
+Blockly.JavaScript['say_track_flow'] = function(block) {
+  var dropdown_dropdown_track = block.getFieldValue('dropdown_track');
+  var number_waittime         = block.getFieldValue('WaitTime');
+  var checkbox_playonce       = block.getFieldValue('PlayOnce') == 'TRUE';
+  var text_placeoncetoken     = block.getFieldValue('PlaceOnceToken');
+  // TODO: Assemble JavaScript into code variable.
+  var code = '...;\n';
+  return code;
+};
+
+Blockly.Extensions.register('dynamic_menu_track',
+  function() {
+  
+	var mymoh = load_list_track();
+	var mio   = this;
+    var mio2  = mio.inputList[1].fieldRow[1].menuGenerator_;
+	var i = 0;	
+	for (myvalue of mymoh){
+		mytemp = [ myvalue , "track" + i];
+		mio2[i] = mytemp; 
+		i++;
+	 }
+  });
+ 
+var demoWorkspace = Blockly.inject('blocklyDiv',
+	{
+	horizontalLayout: false,
+	move:{
+		scrollbars : true,
+		drag       : true,
+		wheel      : true},		
+	toolbox: document.getElementById('toolbox'),
+	zoom:
+		 {controls:   true,
+		  wheel:      false,
+		  startScale: 1.0,
+		  maxScale:   3,
+		  minScale:   0.3,
+		  scaleSpeed: 1.2,
+		  pinch: true},
+	trashcan: true
+	});
+
+	
+
+var v_loadworkspace = false;
+
+var blocklyArea = document.getElementById('blocklyArea');
+var blocklyDiv  = document.getElementById('blocklyDiv');
+
+var onresize = function(e) {
+	// Compute the absolute coordinates and dimensions of blocklyArea.
+	var element = blocklyArea;
+	var x       = 0;
+	var y       = 0;
+	do {
+	  x      += element.offsetLeft;
+	  y      += element.offsetTop;
+	  element = element.offsetParent;
+	} while (element);
+	// Position blocklyDiv over blocklyArea.
+	blocklyDiv.style.left   = x + 'px';
+	blocklyDiv.style.top    = y + 'px';
+	blocklyDiv.style.width  = blocklyArea.offsetWidth + 'px';
+	blocklyDiv.style.height = blocklyArea.offsetHeight + 'px';
+	Blockly.svgResize(demoWorkspace);
+};
+  
+window.addEventListener('resize', onresize, false);
+onresize();
+Blockly.svgResize(demoWorkspace);
+
+load_list();
+  
+function read_flow (myfile){
+ 
+	if (!myfile){
+		var myfile = document.getElementById('browserin').value;
+	}
+	
+	var temp = myfile.substr(-4);
+	
+	if(temp!=".xml") {
+		myfile = myfile + ".xml"; 
+	
+	}
+	document.getElementById('browserin').value = myfile;	
+	
+	
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			demoWorkspace.clear();
+			var xml_text = xhttp.responseText;
+			var xml      = Blockly.Xml.textToDom(xml_text);		
+			Blockly.Xml.domToWorkspace(xml, demoWorkspace);	
+			v_loadworkspace = true;
+			
+		}
+	};
+    xhttp.open("GET", "servertools.pl?action=read&flow=" + myfile, false);		
+    xhttp.send();	
+}
+
+
+function save_flow(mydata){
+		
+    var data;
+	
+    var myfile = document.getElementById('browserin').value;
+	
+	if (!(myfile)){
+		alert("Error : Enter the name of the flow");
+		return;
+	}
+
+	if (!validate_flow()){
+		return;
+	}
+	
+	if(!mydata){
+	    
+		var xml = Blockly.Xml.workspaceToDom(demoWorkspace);
+		var xml_text = Blockly.Xml.domToText(xml);	
+
+		data = 'data='  + xml_text;
+
+	} else {
+		data = 	'data=' + "'" + mydata + "'";
+	}
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function(){
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		// console.log(xmlhttp.responseText);
+		alert("Flow Saved Successfully");
+		v_loadworkspace = true;		
+	  }
+	}
+
+	xmlhttp.open("GET","servertools.pl?" + data + "&name=" + myfile + "&action=save",true);
+
+    //Must add this request header to XMLHttpRequest request for POST
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();		
+}
+
+
+function reload(){
+	demoWorkspace.clear();
+    document.getElementById('browserin').value = "";
+	v_loadworkspace = false;
+}
+
+function download_local(myfile) {
+
+	if (!v_loadworkspace){
+		alert("Error: There is no Flow Loaded");
+		return;		
+	}
+
+	if (!myfile){
+		var myfile = document.getElementById('browserin').value;
+		if(!myfile){
+			alert("Error : There is no Flow loaded");
+			return;
+		}
+	}
+
+	var xml       = Blockly.Xml.workspaceToDom(demoWorkspace);
+	var xml_text  = Blockly.Xml.domToText(xml);
+	var xml_text2 = Blockly.Xml.domToPrettyText(xml);
+
+	var element   = document.createElement('a');
+	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xml_text));  
+	element.setAttribute('download', myfile);
+
+	element.style.display = 'none';
+	document.body.appendChild(element);
+
+	element.click();
+
+	document.body.removeChild(element);
+ 
+}
+
+ 
+function import_flow() {
+
+	var element = document.createElement('input');
+	
+	element.setAttribute('id', 'myinput'); 	
+	element.setAttribute('type', 'file');  
+	element.style.display = 'none';
+    element.accept        ="xml"
+	document.body.appendChild(element);
+
+	element.click();
+
+    element.onchange = function () {upload_flow()};	
+	
+	//document.body.removeChild(element);
+
+}
+
+function upload_flow(){
+	
+	var x          = document.getElementById("myinput");
+    var myfile     = x.files[0];
+	
+	
+	var myformdata = new FormData();
+
+    myformdata.append("myfile", myfile);
+    myformdata.append("action", "upload");	
+	
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function(){
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+	    // alert(xmlhttp.responseText);
+		v_loadworkspace	= true;
+	  }
+	}
+    
+	xmlhttp.open("POST","servertools.pl",true);			
+    //Must add this request header to XMLHttpRequest request for POST
+    //xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send(myformdata);
+	//
+	read_flow(myfile.name);
+
+}	
+		
+function load_list(){
+
+	var mycombo   = document.getElementById("browsers"); 
+  
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		var data  = JSON.parse(this.responseText);
+			
+		for (x of data){
+		 
+			var myoption = document.createElement('option');
+			myoption.text  = x;
+			myoption.value = x;
+
+			mycombo.appendChild(myoption);		 
+
+		}
+      }
+    };
+    xmlhttp.open("GET", "servertools.pl?action=showdir", true);	
+    xmlhttp.send();
+ 
+ 
+ 	var element = document.getElementById('browserin');
+	
+	
+    element.onchange = function () 
+	{
+	
+
+		var myflow = document.getElementById('browserin').value;
+		
+
+		
+		var temp = myflow.substr(-4);
+		
+		if(temp!=".xml") {
+			myflow = myflow + ".xml"; 
+		    document.getElementById('browserin').value = myflow;
+		}
+		
+		var myoptions = document.getElementById('browsers').options;
+
+		
+		var v_exits = 0;
+		
+		for(x in myoptions)
+		{
+			if (myoptions[x].value== myflow){
+				v_exits = 1;
+			}
+		}
+		
+		//if (!v_exits){
+		//	alert("Error : Flow not found : " + myflow);
+		//}
+		if (v_exits){
+			demoWorkspace.clear();
+	
+			read_flow(myflow);				
+		}
+		
+	};	
+	
+	//document.body.removeChild(element);
+	
+
+}
+ 
+ function validate_flow(){
+
+	var xml     = Blockly.Xml.workspaceToDom(demoWorkspace);
+
+    //
+	// 
+	//
+	var myxml        = xml.ownerDocument;
+    var mynodes      = xml.childNodes;
+	var mynodescount = mynodes.length;
+		
+	//
+	// No empty Workspace
+	//
+	if(mynodescount==0){
+		alert("Error: Flow not found");
+		return;
+	}		
+	//
+	// only one flow in the canvas
+	//
+	if(mynodescount>1){
+		alert("Error: only one flow is allow in the canvas");
+		return;
+	}
+	//
+	// verify is the first node is a start_flow
+	//
+	var myattributes = mynodes[0].attributes;
+	
+	if(myattributes[0].nodeValue != "start_flow"){
+		alert("Error: The flow must begin with a Start BLock");	
+		return;
+	}
+	//
+	//
+	// Verify that flows has more than 1 block
+	//
+	//
+	
+    var x            = xml.getElementsByTagName("block");
+    var myblockcount = x.length;
+	var stopblock    = false;
+	
+    console.log("nodos    : " + myblockcount);	
+  	  		
+	if(myblockcount==1){
+		alert("Error : Only one Block Found");
+		return;
+	}
+	//
+	//
+	// Verify that no empty loops found in flow
+	//
+	//		
+	for (var i = 0; i < x.length; i++){
+	
+		mynodetemp = x[i];
+
+
+		if(mynodetemp.attributes["type"].value == "say_number"){
+			if (mynodetemp.childNodes[0].tagName == "field"){
+				console.log("mm" + mynodetemp.childNodes[0].attributes['name'].value);
+				if (mynodetemp.childNodes[0].attributes['name'].value == "NAME"){
+					if (Number(mynodetemp.childNodes[0].textContent) == 0){
+						alert("Error : Number to say must be greather than cero in Say Number Block"); 
+						return;						
+					}				
+				}
+			}
+		}
+
+		if(mynodetemp.attributes["type"].value == "musiconhold"){
+			if (mynodetemp.childNodes[0].tagName == "field"){
+				console.log("mm" + mynodetemp.childNodes[0].attributes['name'].value);
+				if (mynodetemp.childNodes[0].attributes['name'].value == "duration"){
+					if (Number(mynodetemp.childNodes[0].textContent) == 0){
+						alert("Error : Duration must be greather than cero in Music on Hold Block"); 
+						return;						
+					}				
+				}
+			}
+		}
+
+		if(x[i].attributes[0].nodeValue == "loop_statement"){
+			if(x[i].childNodes.length<=1){
+				alert("Error : Empty Loop found");			
+				return;
+			}
+		}
+		if(x[i].attributes[0].nodeValue == "stop_flow"){
+			stopblock = true;
+		}
+
+	}
+	
+	if (!stopblock){
+		alert("Error : At Least One Stop_flow Block Needed");
+		return;
+	}
+	
+	
+	if(myblockcount==2){
+		alert("Error : Only a Start_flow and Stop_flow found");
+		return;
+	}
+	
+	alert("Flow Validated succefully");
+	
+	return true;
+	
+ }
+ 
+ function load_list_moh(){
+
+	var lalista;
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var data  = JSON.parse(this.responseText);
+			lalista = data;
+		}
+    };	
+    xmlhttp.open("GET", "servertools.pl?action=showdirmoh", false);	
+    xmlhttp.send();
+
+ 	return lalista;
+}
+
+ function load_list_track(){
+
+	var lalista;
+	var xmlhttp = new XMLHttpRequest();
+	
+	xmlhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var data  = JSON.parse(this.responseText);
+			lalista = data;
+		}
+    };	
+    xmlhttp.open("GET", "servertools.pl?action=showdirtrack", false);	
+    xmlhttp.send();
+
+ 	return lalista;
+}
+
+
+function test(){
+		
+/*
+	var xmlhttp = new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function(){
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200){
+		// console.log(xmlhttp.responseText);
+		alert("Text Successfully");
+	  }
+	}
+
+	xmlhttp.open("GET","servertools.pl?" + "action=readconfig",true);
+
+    //Must add this request header to XMLHttpRequest request for POST
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xmlhttp.send();		
+}
+*/
+
+}
+
+</script>
+
+</html>
